@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.1",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "allowedValues": [
+        "Brazil South",
+        "West US",
+        "East US"
+      ],
+      "defaultValue": "East US"
+    },
+    "name": {
+      "type": "string",
+        "minLength": 4
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2016-01-01",
+      "kind": "BlobStorage",
+      "location": "[parameters('location')]",
+      "name": "[parameters('name')]",
+      "properties": {
+        "accessTier": "Cool"
+      },
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "type": "Microsoft.Storage/storageAccounts"
+    }
+  ]
+}
+
